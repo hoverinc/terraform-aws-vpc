@@ -191,7 +191,7 @@ resource "aws_subnet" "public" {
   tags = "${merge(map("Name", format("%s-${var.public_subnet_suffix}-%s", var.name, element(var.azs, count.index))), var.tags, var.public_subnet_tags)}"
 
   lifecycle {
-    ignore_changes = ["tags.%", "tags.kubernetes/cluster/"]
+    ignore_changes = ["tags.%", "tags.kubernetes.io/cluster/"]
   }
 }
 
@@ -208,7 +208,7 @@ resource "aws_subnet" "private" {
   tags = "${merge(map("Name", format("%s-${var.private_subnet_suffix}-%s", var.name, element(var.azs, count.index))), var.tags, var.private_subnet_tags)}"
 
   lifecycle {
-    ignore_changes = ["tags.%", "tags.kubernetes"]
+    ignore_changes = ["tags.%", "tags.kubernetes.io/cluster/"]
   }
 }
 
